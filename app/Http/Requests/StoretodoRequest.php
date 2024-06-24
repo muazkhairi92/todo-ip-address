@@ -11,7 +11,7 @@ class StoretodoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoretodoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+                'name'=>'required|string|min:5',
+                'categories_id' => 'sometimes|exists:categories,id'
         ];
     }
 }

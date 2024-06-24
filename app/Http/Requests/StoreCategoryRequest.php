@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatetodoRequest extends FormRequest
+class StoreCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,8 +22,7 @@ class UpdatetodoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'sometimes|string|min:5',
-            'categories_id' => 'sometimes|exists:categories,id'
-    ];
+            //
+        ];
     }
 }

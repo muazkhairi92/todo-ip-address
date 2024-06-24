@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TodoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::middleware(['log.ip'])->group(function () {
+    Route::apiResource('todo', TodoController::class)->except('store');
+    Route::post('todo', [TodoController::class, 'store'])->middleware('ip.auth');
+
 });

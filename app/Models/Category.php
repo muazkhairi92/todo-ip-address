@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IPlog extends Model
+class Category extends Model
 {
     use HasFactory;
 
-    protected $table = "ip_logs";
-
+    public function Todo()
+    {
+        return $this->belongsTo(Todo::class);
+    }
 }

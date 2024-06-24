@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('i_plogs', function (Blueprint $table) {
+        Schema::create('ip_logs', function (Blueprint $table) {
             $table->id();
+            $table->string('ip_address');
             $table->timestamps();
         });
     }
