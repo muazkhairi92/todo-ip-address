@@ -32,14 +32,6 @@ class TodoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(todo $todo)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdatetodoRequest $request, todo $todo)
@@ -56,7 +48,6 @@ class TodoController extends Controller
     public function destroy(todo $todo)
     {
         $todo->delete();
-
         
         return $this->sendResponse(' todo list successfully deleted.', null, 200);
     }
