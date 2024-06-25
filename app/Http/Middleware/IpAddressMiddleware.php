@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\AllowedIp;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,17 +16,11 @@ class IpAddressMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $allowed_ips = [
-            '123.123.123.123',
-            '124.124.124.124',
-        ];
-
-        $client_ip = $request->ip();
-
-        if (in_array($client_ip, $allowed_ips)) {
-            return $next($request);
+        $clientIp = $request->ip();
+        if (!AllowedIp::where('ip_address', $clientIp)->exists()) {
+            return response()->json(['message' => 'IP address not allowed'], 403);
         }
 
-        return response()->json(['error' => 'Unauthorized IP address.'], 403);
+        return $next($request);
     }
 }
