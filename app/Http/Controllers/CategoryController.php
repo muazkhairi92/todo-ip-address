@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
@@ -13,15 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $categories= Category::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return $this->sendResponse('All category list successfully retrieved.', CategoryResource::collection($categories), 200);    
     }
 
     /**
@@ -29,31 +24,19 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
-    }
+        $createdCategory = Category::create($request->validated());
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
+        return $this->sendResponse(' todo list successfully created.', new CategoryResource($createdCategory), 200);   
+     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->validated());
+        $category->refresh();
+        return $this->sendResponse('Category successfully updated.', new CategoryResource($category), 200);  
     }
 
     /**
@@ -61,6 +44,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();    
+        return $this->sendResponse('category successfully deleted.', null, 200);    
     }
 }
