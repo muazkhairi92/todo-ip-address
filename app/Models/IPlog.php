@@ -11,4 +11,7 @@ class IPlog extends Model
 
     protected $table = "ip_logs";
 
+    protected $fillable = [
+        'ip_address',
+    ];
 }
