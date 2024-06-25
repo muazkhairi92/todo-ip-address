@@ -26,7 +26,7 @@ Route::middleware(['log.ip'])->group(function () {
 
     // To-do List Endpoints
     Route::apiResource('category', CategoryController::class)->except('store');
-    // Route::post('category', [CategoryController::class, 'store'])->middleware('ip.auth');
+    Route::post('category', [CategoryController::class, 'store'])->middleware('ip.auth');
 
     // To-do List Endpoints
     Route::apiResource('allowed-ip', AllowedIpController::class)->except('index')->middleware('ip.auth');

@@ -38,8 +38,7 @@ class CategoryTest extends TestCase
         ];
         $response = $this->postJson('/api/category', $categoryData);
         $response->assertStatus(200);
-        // $this->assertDatabaseHas('categories', ['name' => 'New Category' ]);
-
+        $this->assertDatabaseHas('categories', ['name' => 'New Category' ]);
     }
 
 

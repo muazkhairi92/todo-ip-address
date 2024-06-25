@@ -9,7 +9,7 @@ class IPlog extends Model
 {
     use HasFactory;
 
-    protected $table = "ip_logs";
+    protected $table = "iplogs";
 
     protected $fillable = [
         'ip_address',

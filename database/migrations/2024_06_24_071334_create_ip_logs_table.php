@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ip_logs', function (Blueprint $table) {
+        Schema::create('iplogs', function (Blueprint $table) {
             $table->id();
             $table->string('ip_address');
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('i_plogs');
+        Schema::dropIfExists('iplogs');
     }
 };
